@@ -16,5 +16,13 @@ public class Usuario {
     private boolean esAdmin;
     private List<Mensaje> bandejaEntrada;
     
+    public Usuario(String nombre, String contraseña, boolean esAdmin){
+        this.nombre = nombre;
+        this.contraseña = contraseña;
+        this.esAdmin = esAdmin;
+        this.bandejaEntrada = new ArrayList<>();
+            
+    }
+    
     
 }
