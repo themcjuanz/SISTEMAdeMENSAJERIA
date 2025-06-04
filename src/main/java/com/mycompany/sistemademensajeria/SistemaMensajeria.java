@@ -120,6 +120,72 @@ public void CambiarContraseña(){
         System.out.println("Las contraseñas no coinciden");
     }
 }
-}
+    public void enviarMensaje(){
+        if (usuarioActual.esAdmin()){
+            System.out.println("El administrador no puede enviar mensajes");
+            return;
+        }
+        System.out.print("Ingrese nombre del destinatario: ");
+        String destinatario = scanner.nextLine();
+        Usuario usuarioDestinatario = usuarios.get(destinatario);
+        
+        if (usuarioDestinatario == null){
+            System.out.println("El usuario destinatario no existe");
+            return;
+        }
+            
+        if (usuarioDestinatario.esAdmin()){
+            System.out.println("No se puede enviar mensajes al administrador");
+            return;
+        }
+        System.out.print("Ingrese asunto: ");
+        String asunto = scanner.nextLine();
+        System.out.print("Ingrese el mensaje: ");
+        String contenido = scanner.nextLine();
+        
+        Mensaje mensaje = new Mensaje(asunto, contenido, usuarioActual.getNombre());
+        usuarioDestinatario.recibirMensaje(mensaje);
+        
+        System.out.println("Mensaje enviado exitosamente a " + destinatario);
+    }
+    
+    public void mostrarTodosLosUsuarios(){
+        if (!usuarioActual.esAdmin()){
+            System.out.println("Solo el administrador puede ver todos los usuarios");
+            return;
+        }
+        System.out.println("\n---LISTA DE USUARIOS---");
+        System.out.println("Total de usuarios" + usuarios.size());
+        System.out.println("-".repeat(50));
+        
+        for (Usuario usuario: usuarios.values()){
+            System.out.println("*"+usuario.getNombre()+(usuario.esAdmin()?"(Administrador)":"(Usuario)")+"Mensajes:" + usuario.getBandejaEntrada().size());
+        }
+    }
+    public void mostrarMenuAdministrador(){
+        System.out.println("\n---MENU ADMINISTRADOR---");
+        System.out.println("1. registrar nuevo usuario");
+        System.out.println("2. Eliminar usuario");
+        System.out.println("3. Buscar usuario");
+        System.out.println("4. Mostrar todos los usuarios");
+        System.out.println("5. Cambiar contraseña");
+        System.out.println("6. Cerrar sesion");
+        System.out.println("7. Salir del sistema");
+    }
+    
+    public void mostrarMenuUsuario(){
+        System.out.println("\n---MENU USUARIO---");
+        System.out.println("1. Ver bandeja de entrada");
+        System.out.println("2. Enviar mensaje");
+        System.out.println("3. Cambiar contraseña");
+        System.out.println("4. Cerrar sesion");
+        System.out.println("5. Salir del sistema");
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
+    }
+} 
+
 
 
