@@ -182,8 +182,76 @@ public void CambiarContraseña(){
         System.out.println("5. Salir del sistema");
     }
 
+    public void ejecutar(){
+        boolean sistemaActivo = true;
+        
+        while (sistemaActivo){
+            if (usuarioActual == null){
+                System.out.println("\n=== SISTEMA DE MENSAJERÍA ===");
+                System.out.println("1. Iniciar sesión");
+                System.out.println("2. Salir");
+                System.out.println("Seleccione una opción");
+                
+            try {
+                int opcion = Integer.parseInt(scanner.nextLine());
+                switch (opcion){
+                    case 1:
+                        iniciarSesion();
+                        break;
+                    case 2:
+                        sistemaActivo = false;
+                        System.out.println("¡Hasta luego!");
+                        break;
+                    default:
+                        System.out.println("Opción no válida");           
+                }
+                        
+            } catch (NumberFormatException e){
+                System.out.println("Por favor, ingrese un número válido");
+            }  
+        }else {
+                if (usuarioActual.esAdmin()){
+                    mostrarMenuAdministrador();
+                    } else {
+                    mostrarMenuUsuario();
+                    }
+                System.out.print("Seleccione una opción");
+                
+                try { 
+                    int opcion = Integer.parseInt(scanner.nextLine());
+                    if (usuarioActual.esAdmin()){
+                        switch (opcion) {
+                            case 1: RegistrarUsuario(); break;
+                            case 2: eliminarUsuario(); break;
+                            case 3: BuscarUsuario(); break;
+                            case 4: mostrarTodosLosUsuarios(); break;
+                            case 5: CambiarContraseña(); break;
+                            case 6: CerrarSesion(); break;
+                            case 7: sistemaActivo = false; System.out.println("¡Hasta luego!"); break;
+                            default: System.out.println("Opción no válida"); 
+                        }      
+                    }else {
+                        switch (opcion){
+                            case 1: usuarioActual.mostrarBandejaEntrada(); break;
+                            case 2: enviarMensaje(); break;
+                            case 3: CambiarContraseña(); break;
+                            case 4: CerrarSesion(); break;
+                            case 5: sistemaActivo = false; System.out.println("!Hasta luego!");break;
+                            default: System.out.println("Opción no válida");
+                        }
+                    }
+                }catch (NumberFormatException e){
+                    System.out.println("Por favor, ingrese un número válido");
+                }
+            }  
+        }
+        scanner.close();
+        }
+    
+    
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        SistemaMensajeria sistema = new SistemaMensajeria();
+        sistema.ejecutar();
     }
 } 
 
