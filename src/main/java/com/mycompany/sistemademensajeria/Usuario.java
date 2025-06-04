@@ -32,6 +32,9 @@ public class Usuario {
     public boolean esAdmin(){
         return esAdmin;
     }
+    public List<Mensaje> getBandejaEntrada(){
+        return bandejaEntrada;
+    }
     public void setContraseña(String contraseña){
         this.contraseña = contraseña;
     }
