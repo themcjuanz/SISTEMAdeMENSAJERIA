@@ -4,17 +4,12 @@
  */
 package com.mycompany.sistemademensajeria;
 
-import java.util.*;
-
 /**
  *
  * @author juanj
  */
-public class Usuario {
-    private String nombre;
-    private String contraseña;
-    private boolean esAdmin;
-    private List<Mensaje> bandejaEntrada;
-    
+public class Mensaje {
+    private String asunto;
+    private String mensaje;
     
 }
