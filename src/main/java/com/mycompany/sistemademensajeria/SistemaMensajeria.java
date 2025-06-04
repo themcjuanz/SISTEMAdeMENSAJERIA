@@ -4,6 +4,8 @@
 
 package com.mycompany.sistemademensajeria;
 
+import java.util.Scanner;
+
 /**
  *
  * @author juanj
