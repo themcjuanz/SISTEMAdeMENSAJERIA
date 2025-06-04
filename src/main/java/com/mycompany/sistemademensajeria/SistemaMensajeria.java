@@ -28,13 +28,50 @@ public class SistemaMensajeria {
         String nombre = scanner.nextLine();
         System.out.print("\nIngrese la contraseña");
         String contraseña = scanner.nextLine();
+        
         Usuario usuario = usuarios.get(nombre);
         
+        if (usuario!=null && usuario.verificarContraseña(contraseña)){
+        usuarioActual = usuario;
+        System.out.println("Bienvenido,"+ nombre + "!");
+        return true;
+    }else{
+            System.out.println("Nombre de usuario o contraseña incorrecto");
+            return false;
+        }
+    }
+    public void CerrarSesion(){
+        usuarioActual = null;
+        System.out.println("Sesion cerrada extosamente");
+    }
+    
+    public void RegistrarUsuario(){   
+            if (!usuarioActual.esAdmin()){
+                System.out.println("Solo el administrador puede registrar nuevos usuarios");
+                return;
+            }
+        System.out.print("Ingrese el nombre del nuevo usuario: ");
+        String nombre = scanner.nextLine();
         
-        return false;
+        if (usuarios.containsKey(nombre)) {
+            System.out.println("El usuario ya existe");
+            return;
+        }
+        System.out.print("Ingrese la contraseña");
+        String contraseña = scanner.nextLine();
+        
+        usuarios.put(nombre, new Usuario(nombre, contraseña, false));
+        System.out.println("Usuario "+nombre+" registrado exitosamente");
+    
     }
 
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
+    public void eliminarUsuario(){
+        if (!usuarioActual.esAdmin()){
+            System.out.println("Solo el adminstrador puede eliminar usuarios");
+            return;
+            
+        }
+        
     }
 }
+
