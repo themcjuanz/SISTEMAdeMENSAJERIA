@@ -28,6 +28,8 @@ public class SistemaMensajeria {
         String nombre = scanner.nextLine();
         System.out.print("\nIngrese la contraseña");
         String contraseña = scanner.nextLine();
+        Usuario usuario = usuarios.get(nombre);
+        
         
         return false;
     }
