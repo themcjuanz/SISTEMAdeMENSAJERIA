@@ -1,7 +1,7 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package com.mycompany.sistemademensajeria;
 
 import java.util.HashMap;
@@ -13,9 +13,9 @@ import java.util.Map;
  * @author juanj
  */
 public class SistemaMensajeria {
-    private Map<String, Usuario> usuarios;
+    private final Map<String, Usuario> usuarios;
     private Usuario usuarioActual;
-    private Scanner scanner;
+    private final Scanner scanner;
     
     public SistemaMensajeria(){
         usuarios = new HashMap<>();
@@ -221,23 +221,27 @@ public void CambiarContraseña(){
                     int opcion = Integer.parseInt(scanner.nextLine());
                     if (usuarioActual.esAdmin()){
                         switch (opcion) {
-                            case 1: RegistrarUsuario(); break;
-                            case 2: eliminarUsuario(); break;
-                            case 3: BuscarUsuario(); break;
-                            case 4: mostrarTodosLosUsuarios(); break;
-                            case 5: CambiarContraseña(); break;
-                            case 6: CerrarSesion(); break;
-                            case 7: sistemaActivo = false; System.out.println("¡Hasta luego!"); break;
-                            default: System.out.println("Opción no válida"); 
+                            case 1 -> RegistrarUsuario();
+                            case 2 -> eliminarUsuario();
+                            case 3 -> BuscarUsuario();
+                            case 4 -> mostrarTodosLosUsuarios();
+                            case 5 -> CambiarContraseña();
+                            case 6 -> CerrarSesion();
+                            case 7 -> {
+                                sistemaActivo = false; System.out.println("¡Hasta luego!"); 
+                            }
+                            default -> System.out.println("Opción no válida");
                         }      
                     }else {
                         switch (opcion){
-                            case 1: usuarioActual.mostrarBandejaEntrada(); break;
-                            case 2: enviarMensaje(); break;
-                            case 3: CambiarContraseña(); break;
-                            case 4: CerrarSesion(); break;
-                            case 5: sistemaActivo = false; System.out.println("!Hasta luego!");break;
-                            default: System.out.println("Opción no válida");
+                            case 1 -> usuarioActual.mostrarBandejaEntrada();
+                            case 2 -> enviarMensaje();
+                            case 3 -> CambiarContraseña();
+                            case 4 -> CerrarSesion();
+                            case 5 -> {
+                                sistemaActivo = false; System.out.println("!Hasta luego!");
+                            }
+                            default -> System.out.println("Opción no válida");
                         }
                     }
                 }catch (NumberFormatException e){
