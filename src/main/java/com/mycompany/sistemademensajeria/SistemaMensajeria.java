@@ -40,12 +40,12 @@ public class SistemaMensajeria {
             return false;
         }
     }
-    public void CerrarSesion(){
+    public void cerrarSesion(){
         usuarioActual = null;
         System.out.println("Sesion cerrada extosamente");
     }
     
-    public void RegistrarUsuario(){   
+    public void registrarUsuario(){   
             if (!usuarioActual.esAdmin()){
                 System.out.println("Solo el administrador puede registrar nuevos usuarios");
                 return;
@@ -86,7 +86,7 @@ public class SistemaMensajeria {
     
     }
     
-        public void BuscarUsuario(){
+        public void buscarUsuario(){
             System.out.print("Ingrese el nombre del usuario a buscar");
             String nombre = scanner.nextLine();
 
@@ -100,7 +100,7 @@ public class SistemaMensajeria {
             }
         }
     
-        public void CambiarContraseña(){
+        public void cambiarContraseña(){
             System.out.println("Ingrese su contraseña actual: ");
             String contraseñaActual = scanner.nextLine();
 
@@ -219,12 +219,12 @@ public class SistemaMensajeria {
                         int opcion = Integer.parseInt(scanner.nextLine());
                         if (usuarioActual.esAdmin()){ 
                             switch (opcion) {
-                                case 1 -> RegistrarUsuario();
+                                case 1 -> registrarUsuario();
                                 case 2 -> eliminarUsuario();
-                                case 3 -> BuscarUsuario();
+                                case 3 -> buscarUsuario();
                                 case 4 -> mostrarTodosLosUsuarios();
-                                case 5 -> CambiarContraseña();
-                                case 6 -> CerrarSesion();
+                                case 5 -> cambiarContraseña();
+                                case 6 -> cerrarSesion();
                                 case 7 -> {
                                     sistemaActivo = false; System.out.println("¡Hasta luego!");
                                 }
@@ -234,8 +234,8 @@ public class SistemaMensajeria {
                             switch (opcion){
                                 case 1 -> usuarioActual.mostrarBandejaEntrada();
                                 case 2 -> enviarMensaje();
-                                case 3 -> CambiarContraseña();
-                                case 4 -> CerrarSesion();
+                                case 3 -> cambiarContraseña();
+                                case 4 -> cerrarSesion();
                                 case 5 -> {
                                     sistemaActivo = false; System.out.println("!Hasta luego!");
                                 }
